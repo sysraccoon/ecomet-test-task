@@ -1,0 +1,23 @@
+services:
+  scraper:
+    depends_on:
+      - clickhouse
+    build: .
+    env_file: ".env"
+    ports:
+      - "8000:8000"
+  clickhouse:
+    image: clickhouse:24.3
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    environment:
+      - "CLICKHOUSE_USER=default"
+      - "CLICKHOUSE_PASSWORD=default"
+      - "CLICKHOUSE_DB=test"
+    volumes:
+      - "clickhouse-data:/var/lib/clickhouse"
+      - "./scheme.sql:/docker-entrypoint-initdb.d/init.sql"
+
+volumes:
+  clickhouse-data:
