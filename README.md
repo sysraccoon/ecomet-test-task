@@ -78,7 +78,7 @@ docker-compose up --build
 через терминал с помощью `curl`:
 
 ```sh
-curl http://localhost:5432/api/db_version
+curl http://localhost:8000/api/db_version
 ```
 
 БД в `compose.yaml` написан для упрощения разворачивания и плохо подходит для
